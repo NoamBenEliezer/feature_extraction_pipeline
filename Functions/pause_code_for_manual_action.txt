@@ -1,0 +1,6 @@
+how to stop code without having to start over again, until user manually continues.
+
+dir_name = pwd;
+save mrQ_env_before_registration;
+uiwait(msgbox(sprintf('Stopping for debugging (dir = %s)',dir_name)));
+%msgbox(sprintf('Stopping for debugging (dir = %s)',dir_name));
