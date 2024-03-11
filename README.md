@@ -15,3 +15,11 @@ The feature extraction requires the user to input the following:
 10.	Change “ROI_names” to contain the names of the user’s chosen brain regions to explore, according to the FreeSurfer lookup table.
 11.	Change “ROIs_2_combine” to contain pairs of ROIs that the user wishes to combine to one ROI (for example left and right hippocampus).
 Map type – choose the map type you wish to analyze out of the following: T1, T2, PD, ADC, ihMTR, MTRs, QSM, T2*, MTVF, WF, MTR, MTstat, M0, B1.
+
+Pipeline for the feature extraction pipeline:
+The user sets their global parameters in ‘qMRI_SET_GLOBALS.m” and then runs the pipeline from the main script: ‘extract_qMRI_features.m’. 
+(1)	The data for the current subject is uploaded and entered into the ‘extract_qMRI_features_for_all_ROIs.m’ function to extract the statistical features from the ROIs in the given list. In this function the erosion and Chauvenet criterion are performed to clean the data. The resulting data structure is returned to the main script.
+(2)	There it is inserted into the next function, ‘Consolidate_ROIs.m’ which create the combined ROIs of both hemispheres, as defined by the user.
+(3)	The resulting data structure per subject is returned to the main script in which the data structures of all the subjects are combined into one data structure with the levels: session, group, subject, qMRI map, ROI, and feature. See appendix H for a visual outline of this structure.
+
+![image](https://github.com/NoamBenEliezer/feature_extraction_pipeline/assets/105850627/e7f73c94-704b-4e52-a157-ff19ec35f12f)
